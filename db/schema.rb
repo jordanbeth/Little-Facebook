@@ -15,6 +15,23 @@ ActiveRecord::Schema.define(version: 20170310164300) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "friend_requests", force: :cascade do |t|
+    t.integer  "users_id",   null: false
+    t.integer  "friend_id",  null: false
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_friend_requests_on_users_id", using: :btree
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.integer  "users_id",   null: false
+    t.integer  "friend_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_friends_on_users_id", using: :btree
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer  "users_id"
     t.integer  "posts_id"
