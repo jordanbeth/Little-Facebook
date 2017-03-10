@@ -3,7 +3,7 @@ class CreateFriendRequests < ActiveRecord::Migration[5.0]
     create_table :friend_requests do |t|
       t.references :users, null: false
       t.integer :friend_id, null: false
-      t.boolean :status, default: null
+      t.boolean :status
 
       t.timestamps
     end
