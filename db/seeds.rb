@@ -5,9 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-jordan = User.create!(username: "Jordan", email: "jordan@gmail.com", password_digest: "password")
-tatiana = User.create!(username: "Tatiana", email: "tatiana@gmail.com", password_digest: "password")
-karan = User.create!(username: "Karan", email: "karan@gmail.com", password_digest: "password")
+jordan = User.create!(first_name: "Jordan", last_name: "afafafhhw", email: "jordan@gmail.com", password_digest: "password")
+tatiana = User.create!(first_name: "Tatiana", last_name: "fdsf", email: "tatiana@gmail.com", password_digest: "password")
+karan = User.create!(first_name: "Karan", last_name: "sdafdsaf", email: "karan@gmail.com", password_digest: "password")
 
 Friend.create!(user_id: karan.id, friend_id: tatiana.id)
 Friend.create!(user_id: jordan.id, friend_id: karan.id)
