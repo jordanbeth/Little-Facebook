@@ -13,3 +13,8 @@ Friend.create!(user_id: karan.id, friend_id: tatiana.id)
 Friend.create!(user_id: jordan.id, friend_id: karan.id)
 
 FriendRequest.create!(user_id: tatiana.id, friend_id: jordan.id)
+
+
+50.times do
+  Post.create!(content: Faker::Hipster.paragraph(3), user_id: (rand(3)+1))
+end
