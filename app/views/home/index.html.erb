@@ -1,7 +1,10 @@
-<h1>Welcome to Little Facebook!</h1>
-<h2>Please login</h2>
+<h2>Welcome to Little Facebook!</h2>
 
-<%= form_for(:session, url: sessions_login_path) do |f| %>
+<%= render 'partials/errors' %>
+
+<h4>Please login</h4>
+
+<%= form_for(:session, url: login_path) do |f| %>
 <%=f.label :email %>
 <%=f.email_field :email %>
 

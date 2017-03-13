@@ -1,20 +1,19 @@
 module ApplicationHelper
 
   def current_user
-    @current_user ||=User.find_by(id: session[:user_id])
+    @current_user ||=User.find_by_id(session[:user_id])
   end
 
   def require_user
     redirect_to root_path unless current_user
   end
 
-  def authorized_to_delete
+  def authorized
     current_user.id == @post.creator_id
   end
 
-  # def authorized_to_post
+  def can_like
 
-  #   current_user.id
-  # end
+  end
 
 end

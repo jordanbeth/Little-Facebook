@@ -1,13 +1,52 @@
-<h1>Little Facebook</h1>
 
-<h2><%=@current_user.first_name%> <%= @current_user.last_name%></h2>
+<div class="row">
+  <div class="col s12">
+   <h2><%=@user.first_name%> <%= @user.last_name%></h2>
+  </div>
 
-<div style="text-align:center;">
+  <div class="col s3">
+    <h3>Friends</h3>
+
+      <p>You have no friends yet :-{ </p>
+
+  </div>
+
+  <div class="col s9">
   <h3>Posts</h3>
   <%if @posts%>
     <% @posts.each do |post|%>
-      <p><%=post.content%></p>
-      <p><%=post.created_at%></p>
+      <p><%=post.content %></p>
+      <p><%=post.creator.first_name %></p>
+      <p><%=post.created_at.to_datetime.in_time_zone("Central Time (US & Canada)").strftime("%A, %d %b %Y") %></p>
+      <%= link_to post_likes_path(post), method: :post do %>
+      <i class="tiny material-icons" >thumb_up</i>
+      <%end%>
+      <strong><%=post.likes.count %></strong>
+      <%= link_to post_likes_path(post), method: :delete do %>
+      <i class="tiny material-icons" >thumb_down</i>
+      <%end%>
+
+       <br>
+      <% if post.creator_id == current_user.id %>
+      <%= link_to 'Delete post', post_path(post), method: :delete %> | <%= link_to 'Edit', edit_post_path(post) %>
+     <% end %>
     <% end %>
+  <% else %>
+      <p>You have no posts yet </p>
   <%end%>
+
+  <%= render 'partials/errors' %>
+  <%= form_for @post do |f| %>
+      <%= f.hidden_field :timeline_id, value: @user.id %><br>
+      <%= f.hidden_field :creator_id, value: current_user.id %><br>
+<br>
+       <%= f.label "Post" %>
+       <%= f.text_area :content %><br>
+<br>
+
+       <%= f.submit  "Post" %>
+
+<%end%>
+</div>
+
 </div>

@@ -33,20 +33,19 @@ ActiveRecord::Schema.define(version: 20170310164300) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer  "users_id"
-    t.integer  "posts_id"
+    t.integer  "liker_id"
+    t.integer  "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["posts_id"], name: "index_likes_on_posts_id", using: :btree
-    t.index ["users_id"], name: "index_likes_on_users_id", using: :btree
+    t.index ["post_id"], name: "index_likes_on_post_id", using: :btree
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "content",    null: false
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
+    t.string   "content",     null: false
+    t.integer  "creator_id"
+    t.integer  "timeline_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

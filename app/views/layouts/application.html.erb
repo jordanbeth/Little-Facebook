@@ -4,16 +4,30 @@
     <title>LittleFacebook</title>
     <%= csrf_meta_tags %>
 
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-     <% if current_user %>
-    <%= link_to 'Profile page', user_path(current_user) %> | <%= link_to "Log out", sessions_logout_path %>
-    <%else%>
-    <%= link_to 'Register', new_user_path %> | <%= "Log In", root_path %>
-    <%end%>
+    <div class="container">
+    <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Little Facebook</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <% if current_user %>
+        <li><%= link_to 'Profile page', user_path(current_user) %></li>
+        <li><%= link_to "Log out", logout_path %></li>
+        <% else %>
+        <li><%= link_to 'Register', new_user_path %></li>
+        <li><%= link_to "Log In", root_path %></li>
+        <%end%>
+      </ul>
+    </div>
+  </nav>
+
     <%= yield %>
+  </div>
   </body>
 </html>
